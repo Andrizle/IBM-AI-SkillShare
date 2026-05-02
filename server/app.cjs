@@ -24,7 +24,7 @@ app.get('/health', (_req, res) => res.json({ status: 'ok', time: new Date().toIS
 const distPath = path.join(__dirname, '../dist');
 if (fs.existsSync(distPath)) {
   app.use(express.static(distPath));
-  app.get('/{*path}', (_req, res) => res.sendFile(path.join(distPath, 'index.html')));
+  app.get(/.*/, (_req, res) => res.sendFile(path.join(distPath, 'index.html')));
 }
 
 app.use((err, _req, res, _next) => {
