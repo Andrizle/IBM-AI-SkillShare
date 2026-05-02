@@ -1,0 +1,26 @@
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+
+const medicationRoutes = require('./routes/medications.cjs');
+const notificationRoutes = require('./routes/notifications.cjs');
+const aiRoutes = require('./routes/ai.cjs');
+
+const app = express();
+
+app.use(helmet());
+app.use(cors());
+app.use(express.json());
+
+app.use('/api/medications', medicationRoutes);
+app.use('/api/notifications', notificationRoutes);
+app.use('/api/ai', aiRoutes);
+
+app.get('/health', (_req, res) => res.json({ status: 'ok', time: new Date().toISOString() }));
+
+app.use((err, _req, res, _next) => {
+  console.error(err);
+  res.status(err.status || 500).json({ error: err.message || 'Internal server error' });
+});
+
+module.exports = app;

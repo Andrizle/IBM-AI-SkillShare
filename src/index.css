@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hearthside — calming, trustworthy healthcare design system.
+   All colors HSL. Sage + cream + deep ink + warm coral accent. */
+
+@layer base {
+  :root {
+    --background: 40 38% 96%;            /* warm cream */
+    --foreground: 200 30% 14%;           /* deep ink */
+
+    --card: 40 50% 98%;
+    --card-foreground: 200 30% 14%;
+
+    --popover: 40 50% 98%;
+    --popover-foreground: 200 30% 14%;
+
+    --primary: 158 32% 32%;              /* sage green */
+    --primary-foreground: 40 50% 98%;
+    --primary-glow: 158 38% 48%;
+
+    --secondary: 40 30% 90%;
+    --secondary-foreground: 200 30% 14%;
+
+    --muted: 40 24% 91%;
+    --muted-foreground: 200 12% 38%;
+
+    --accent: 14 78% 64%;                /* warm coral */
+    --accent-foreground: 40 50% 98%;
+
+    --highlight: 38 88% 62%;             /* honey */
+    --highlight-foreground: 200 30% 14%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 40 50% 98%;
+
+    --border: 40 20% 86%;
+    --input: 40 20% 86%;
+    --ring: 158 32% 32%;
+
+    --radius: 1rem;
+
+    --gradient-warm: linear-gradient(135deg, hsl(40 38% 96%) 0%, hsl(40 60% 92%) 50%, hsl(28 55% 88%) 100%);
+    --gradient-sage: linear-gradient(135deg, hsl(158 32% 32%) 0%, hsl(170 38% 40%) 100%);
+    --gradient-soft: linear-gradient(180deg, hsl(40 50% 98%) 0%, hsl(40 30% 93%) 100%);
+    --gradient-coral: linear-gradient(135deg, hsl(14 78% 64%) 0%, hsl(28 82% 66%) 100%);
+
+    --shadow-soft: 0 1px 2px hsl(200 30% 14% / 0.04), 0 8px 24px -8px hsl(200 30% 14% / 0.08);
+    --shadow-warm: 0 20px 60px -20px hsl(158 32% 32% / 0.25);
+    --shadow-glow: 0 0 0 1px hsl(40 20% 86%), 0 30px 80px -30px hsl(158 32% 32% / 0.35);
+
+    --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 200 28% 9%;
+    --foreground: 40 38% 94%;
+    --card: 200 24% 12%;
+    --card-foreground: 40 38% 94%;
+    --popover: 200 24% 12%;
+    --popover-foreground: 40 38% 94%;
+    --primary: 158 38% 52%;
+    --primary-foreground: 200 28% 9%;
+    --primary-glow: 158 42% 60%;
+    --secondary: 200 18% 18%;
+    --secondary-foreground: 40 38% 94%;
+    --muted: 200 18% 16%;
+    --muted-foreground: 40 14% 70%;
+    --accent: 14 78% 64%;
+    --accent-foreground: 200 28% 9%;
+    --highlight: 38 88% 62%;
+    --highlight-foreground: 200 28% 9%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 40 38% 94%;
+    --border: 200 18% 20%;
+    --input: 200 18% 20%;
+    --ring: 158 38% 52%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: 'Fraunces', Georgia, serif; }
+  .bg-gradient-warm { background: var(--gradient-warm); }
+  .bg-gradient-sage { background: var(--gradient-sage); }
+  .bg-gradient-soft { background: var(--gradient-soft); }
+  .bg-gradient-coral { background: var(--gradient-coral); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-warm { box-shadow: var(--shadow-warm); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .text-balance { text-wrap: balance; }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.04); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+.animate-pulse-soft { animation: pulse-soft 3s ease-in-out infinite; }
+.animate-fade-up { animation: fade-up 0.7s var(--transition-smooth) both; }
